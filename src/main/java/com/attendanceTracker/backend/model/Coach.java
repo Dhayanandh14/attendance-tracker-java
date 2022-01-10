@@ -13,10 +13,10 @@ public class Coach {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long coach_id;
+	private long id;
 	
 	@Column(name = "user_id")
-	private String userId;
+	private long userId;
 	
 	@Column(name = "profile_job")
 	private String profile_job;
@@ -25,26 +25,26 @@ public class Coach {
 		
 	}
 	
-	public Coach(long coach_id, String userId, String profile_job) {
+	public Coach(long coach_id, Long userId, String profile_job) {
 		super();
-		this.coach_id = coach_id;
+		this.id = coach_id;
 		this.userId = userId;
 		this.profile_job = profile_job;
 	}
 
 	public long getCoach_id() {
-		return coach_id;
+		return id;
 	}
 
 	public void setCoach_id(long coach_id) {
-		this.coach_id = coach_id;
+		this.id = coach_id;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public String getProfile_job() {

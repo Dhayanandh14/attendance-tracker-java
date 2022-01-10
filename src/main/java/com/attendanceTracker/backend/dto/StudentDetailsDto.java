@@ -11,7 +11,7 @@ public class StudentDetailsDto {
 			String grade) {
 		super();
 		this.user_id = user_id;
-		this.student_id = student_id;
+		this.id = student_id;
 		this.user_email = user_email;
 		this.user_name = user_name;
 		this.squad_name = squad_name;
@@ -32,7 +32,7 @@ public class StudentDetailsDto {
 	}
 
 
-	private long student_id;
+	private long id;
 	private String user_email;
 	private String user_name;
 	
@@ -62,28 +62,28 @@ public class StudentDetailsDto {
 		
 	}
 	
-	public StudentDetailsDto(String user_email, String user_name, String squad_name, String interviewer,
-			String date_of_Join, String status, String education, String interviewer_review, String grade) {
-		super();
-		this.user_email = user_email;
-		this.user_name = user_name;
-		this.squad_name = squad_name;
-		this.interviewer = interviewer;
-		this.date_of_Join = date_of_Join;
-		this.status = status;
-		this.education = education;
-		this.interviewer_review = interviewer_review;
-		this.grade = grade;
-	}
+//	public StudentDetailsDto(String user_email, String user_name, String squad_name, String interviewer,
+//			String date_of_Join, String status, String education, String interviewer_review, String grade) {
+//		super();
+//		this.user_email = user_email;
+//		this.user_name = user_name;
+//		this.squad_name = squad_name;
+//		this.interviewer = interviewer;
+//		this.date_of_Join = date_of_Join;
+//		this.status = status;
+//		this.education = education;
+//		this.interviewer_review = interviewer_review;
+//		this.grade = grade;
+//	}
+//
 
-
-	public long getId() {
-		return student_id;
+	public long getStudentId() {
+		return id;
 	}
 
 
 	public void setStudentId(long id) {
-		this.student_id = id;
+		this.id = id;
 	}
 
 

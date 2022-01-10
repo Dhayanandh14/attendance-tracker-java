@@ -25,13 +25,6 @@ public class StudentService {
 	private ModelMapper modelMapper;
 	
 	
-//	public List<StudentDetailsDto> getAllUserStudentDetails(){
-//		return userRepository.findAll()
-//				.stream()
-//				.map(this::convertEntityToDetailsDto)
-//				.collect(Collectors.toList());
-//	}
-	
 	private StudentDetailsDto convertEntityToDetailsDto(User user ) {
 //		modelMapper.getConfiguration()
 //        .setMatchingStrategy(MatchingStrategies.LOOSE);

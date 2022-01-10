@@ -16,12 +16,12 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "users",uniqueConstraints=@UniqueConstraint(columnNames={"user_id","user_email"}))
+@Table(name = "users",uniqueConstraints=@UniqueConstraint(columnNames={"id","user_email"}))
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long user_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	private long id;
 	
 	@Column(name = "user_name")
 	private String username;
@@ -113,11 +113,11 @@ public class User {
 //	}
 
 	public long getUser_id() {
-		return user_id;
+		return id;
 	}
 
 	public void setUser_id(long user_id) {
-		this.user_id = user_id;
+		this.id = user_id;
 	}
 
 	public String getUser_name() {

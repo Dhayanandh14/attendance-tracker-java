@@ -5,12 +5,15 @@ import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.security.auth.x500.X500Principal;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.attendanceTracker.backend.dto.StudentDetailsDto;
 import com.attendanceTracker.backend.dto.UserDetailsDto;
+import com.attendanceTracker.backend.dto.UserRequestDto;
 import com.attendanceTracker.backend.model.Student;
 import com.attendanceTracker.backend.model.User;
 import com.attendanceTracker.backend.repository.StudentRepository;
@@ -47,19 +50,31 @@ public class UserService {
         return userDetailsDto;
 	}
 	
-//	public List<UserDetailsDto> getAllUserAndStudentDetails() {
-//		return userRepository.findByRole("student")
-//				.stream()
-//				.map(this::convertEntityToDetailsDto)
-//				.collect(Collectors.toList());
-//	}
-	
 	public List<UserDetailsDto> getAllUserAndStudentDetails(Long id) {
 		 return userRepository.findById(id)
 				.stream()
 				.map(this::convertEntityToDetailsDto)
 				.collect(Collectors.toList());
 	}
+	
+	public  Boolean convertDtoToEntity(UserRequestDto userRequestDto) {
+		try {
+			User user = userRepository.findById(userRequestDto.getUser_id());
+			user = modelMapper.map(userRequestDto, User.class);
+			userRepository.save(user);
+			
+			Student student = studentRepository.findById(userRequestDto.getStudent_id());
+			student = modelMapper.map(userRequestDto, Student.class);
+			studentRepository.save(student);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
+	
+
+	
 
 
 	

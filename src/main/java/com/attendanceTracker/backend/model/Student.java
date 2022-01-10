@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long student_id;
+	private long id;
 	
 	@Column(name = "user_id")
 	private long userId;
@@ -61,11 +61,11 @@ public class Student {
 	}
 
 	public long getStudent_id() {
-		return student_id;
+		return id;
 	}
 
 	public void setStudent_id(long student_id) {
-		this.student_id = student_id;
+		this.id = student_id;
 	}
 
 	public long getUser_id() {
