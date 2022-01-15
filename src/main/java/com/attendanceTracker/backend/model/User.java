@@ -83,6 +83,16 @@ public class User {
 	
 	}
 	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", useremail=" + useremail + ", password=" + password
+				+ ", role=" + role + ", age=" + age + ", gender=" + gender + ", communication_address="
+				+ communication_address + ", home_address=" + home_address + ", access_id=" + access_id
+				+ ", Aadhar_number=" + Aadhar_number + ", phone_number=" + phone_number + ", blood_group=" + blood_group
+				+ ", personal_email=" + personal_email + ", emergency_contact_name=" + emergency_contact_name
+				+ ", emergency_contact_number=" + emergency_contact_number + "]";
+	}
+
 	public User(String user_name, String user_email, String password, String role, int age, String gender,
 			String communication_address, String home_address, String access_id, long aadhar_number, long phone_number,
 			String blood_group, String personal_email, String emergency_contact_name, long emergency_contact_number) {

@@ -7,6 +7,23 @@ import javax.persistence.Column;
 public class UserRequestDto {
 	private long user_id;
 	private String user_name;
+	
+	private String user_email;
+	private String role;
+	
+	public String getUser_email() {
+		return user_email;
+	}
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	private String access_id;
 	private int age;
 	private Long phone_number;

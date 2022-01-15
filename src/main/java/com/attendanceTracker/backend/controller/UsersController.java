@@ -150,17 +150,4 @@ public class UsersController {
 		return isExist;
 	    
 	}
-	
-//	@GetMapping("/demo/{id}/{role}")
-//	public List<User> demoCheck(@PathVariable("id") Long id,@PathVariable("role") String role){
-//		return userRepository.findByUseremailAndRole(id, role);
-//	}
-	
-
-	
-//	@GetMapping("/signin")
-//	public List<User> getEmailId(){
-//		List<User> users = userRepository.findByUseremail("admin@admin.com");
-//		return users;
-//	}	
 } 
