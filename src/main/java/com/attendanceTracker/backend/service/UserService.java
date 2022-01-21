@@ -46,7 +46,7 @@ public class UserService {
         userDetailsDto.setGrade(student.getGrade());
         userDetailsDto.setInterviewer_review(student.getInterviewer_review());
         userDetailsDto.setStatus(student.getStatus());
-        
+        userDetailsDto.setBatch(student.getBatch());
         return userDetailsDto;
 	}
 	

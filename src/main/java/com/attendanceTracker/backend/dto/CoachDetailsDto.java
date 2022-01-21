@@ -6,6 +6,7 @@ public class CoachDetailsDto {
 	private String user_email;
 	private String user_name;
 	private String profile_job;
+	private String status;
 	
 	
 	public CoachDetailsDto() {
@@ -14,15 +15,28 @@ public class CoachDetailsDto {
 
 	
 
-	public CoachDetailsDto(String access_id, String user_email, String user_name, String profile_job) {
+	public String getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
+	public CoachDetailsDto(long id, String access_id, String user_email, String user_name, String profile_job,
+			String status) {
 		super();
+		this.id = id;
 		this.access_id = access_id;
 		this.user_email = user_email;
 		this.user_name = user_name;
 		this.profile_job = profile_job;
+		this.status = status;
 	}
-
-
 
 	public long getId() {
 		return id;

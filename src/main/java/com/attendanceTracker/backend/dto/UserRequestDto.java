@@ -60,6 +60,17 @@ public class UserRequestDto {
 	
 	private String interviewer_review;
 	private String grade;
+	private Integer batch;
+	
+	
+	
+	
+	public Integer getBatch() {
+		return batch;
+	}
+	public void setBatch(Integer batch) {
+		this.batch = batch;
+	}
 	public long getUser_id() {
 		return user_id;
 	}
@@ -198,7 +209,7 @@ public class UserRequestDto {
 			String communication_address, String home_address, long aadhar_number, String blood_group,
 			String personal_email, String emergency_contact_name, long emergency_contact_number, long student_id,
 			long userId, String squad_name, String interviewer, String date_of_Join, String status, String education,
-			String interviewer_review, String grade) {
+			String interviewer_review, String grade,Integer batch) {
 		super();
 		this.user_name = user_name;
 		this.access_id = access_id;
@@ -221,7 +232,6 @@ public class UserRequestDto {
 		this.education = education;
 		this.interviewer_review = interviewer_review;
 		this.grade = grade;
-	}	
-	
-	
+		this.batch = batch;
+	}		
 }

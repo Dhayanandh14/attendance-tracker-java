@@ -68,6 +68,12 @@ public class UsersController {
 		return userRepository.findAll();
 		
 	}
+	
+	@GetMapping("/get-all-names-and-id")
+	public List<Object[]> getAllNameFromUsers(){
+		return userRepository.getAllUserNames();
+	}
+	
 	@PostMapping("/users")
 	public User createUser(@RequestBody User user) {
 		System.out.print(user.getPassword());

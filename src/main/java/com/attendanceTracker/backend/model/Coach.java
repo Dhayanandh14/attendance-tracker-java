@@ -10,26 +10,30 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "coach_details")
 public class Coach {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Column(name = "user_id")
 	private long userId;
-	
+
 	@Column(name = "profile_job")
 	private String profile_job;
 
+	@Column(name = "status")
+	private String status;
+
 	public Coach() {
-		
+ 
 	}
-	
-	public Coach(long coach_id, Long userId, String profile_job) {
+
+	public Coach(long id, long userId, String profile_job, String status) {
 		super();
-		this.id = coach_id;
+		this.id = id;
 		this.userId = userId;
 		this.profile_job = profile_job;
+		this.status = status;
 	}
 
 	public long getCoach_id() {
@@ -47,6 +51,7 @@ public class Coach {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
 	public String getProfile_job() {
 		return profile_job;
 	}
@@ -54,6 +59,12 @@ public class Coach {
 	public void setProfile_job(String profile_job) {
 		this.profile_job = profile_job;
 	}
-	
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

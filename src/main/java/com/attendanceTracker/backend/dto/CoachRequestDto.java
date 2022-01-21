@@ -49,8 +49,18 @@ public class CoachRequestDto {
 	private long coach_id;
 	private long userId;
 	private String profile_job;
+	private String status;
 	
-	
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
 	public CoachRequestDto() {
 		
 	}
@@ -58,7 +68,7 @@ public class CoachRequestDto {
 	
 	public CoachRequestDto(String user_name, String access_id, int age, Long phone_number, String gender,
 			String communication_address, String home_address, long aadhar_number, String blood_group,
-			String personal_email, String emergency_contact_name, long emergency_contact_number, long coach_id,
+			String personal_email, String status, String emergency_contact_name, long emergency_contact_number, long coach_id,
 			long userId, String profile_job) {
 		super();
 		this.user_name = user_name;
@@ -71,6 +81,7 @@ public class CoachRequestDto {
 		Aadhar_number = aadhar_number;
 		this.blood_group = blood_group;
 		this.personal_email = personal_email;
+		this.status= status;
 		this.emergency_contact_name = emergency_contact_name;
 		this.emergency_contact_number = emergency_contact_number;
 		this.coach_id = coach_id;

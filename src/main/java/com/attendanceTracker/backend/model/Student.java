@@ -42,15 +42,16 @@ public class Student {
 	
 	@Column(name = "grade")
 	private String grade;	
-
 	
-	public Student() {
-		
-	}
-	public Student(long user_id, String squad_name, String interviewer, String date_of_Join, String status,
-			String education, String interviewer_review, String grade) {
+	@Column(name = "batch")
+	private Integer batch;
+	
+	
+	public Student(long id, long userId, String squad_name, String interviewer, String date_of_Join, String status,
+			String education, String interviewer_review, String grade, Integer batch) {
 		super();
-		this.userId = user_id;
+		this.id = id;
+		this.userId = userId;
 		this.squad_name = squad_name;
 		this.interviewer = interviewer;
 		this.date_of_Join = date_of_Join;
@@ -58,7 +59,13 @@ public class Student {
 		this.education = education;
 		this.interviewer_review = interviewer_review;
 		this.grade = grade;
+		this.batch = batch;
 	}
+	public Student() {
+		
+	}
+
+
 
 	public long getStudent_id() {
 		return id;
@@ -131,5 +138,11 @@ public class Student {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-
+	public Integer getBatch() {
+		return batch;
+	}
+	public void setBatch(Integer batch) {
+		this.batch = batch;
+	}
+	
 }	

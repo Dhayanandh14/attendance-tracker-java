@@ -38,6 +38,7 @@ public class CoachService {
 		System.out.print(coachDetailsDto.getId());
 		Coach coach = coachRepository.findByUserId(user.getUser_id());
 		coachDetailsDto.setProfile_job(coach.getProfile_job());
+		coachDetailsDto.setStatus(coach.getStatus());
 		return coachDetailsDto;
 	}
 	
@@ -60,6 +61,7 @@ public class CoachService {
 		coachInfoDto.setUseremail(user.getUser_email());
 		coachInfoDto.setCoach_id(coach.getCoach_id());
 		coachInfoDto.setProfile_job(coach.getProfile_job());
+		coachInfoDto.setStatus(coach.getStatus());
 		return coachInfoDto;
 	}
 	

@@ -40,7 +40,7 @@ public class StudentService {
 		studentDetailsDto.setGrade(student.getGrade());
 		studentDetailsDto.setInterviewer_review(student.getInterviewer_review());
 		studentDetailsDto.setStatus(student.getStatus());
-		
+		studentDetailsDto.setBatch(student.getBatch());
 		return studentDetailsDto;
 	}
 

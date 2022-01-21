@@ -40,10 +40,12 @@ public class StudentDetailsDto {
 
 
 	private String grade;
+	
+	private Integer batch;
 
 	public StudentDetailsDto(long user_id, long student_id, String user_email, String user_name, String squad_name,
 			String interviewer, String date_of_Join, String status, String education, String interviewer_review,
-			String grade) {
+			String grade,Integer batch) {
 		super();
 		this.user_id = user_id;
 		this.id = student_id;
@@ -56,6 +58,7 @@ public class StudentDetailsDto {
 		this.education = education;
 		this.interviewer_review = interviewer_review;
 		this.grade = grade;
+		this.batch = batch;
 	}
 
 	public long getUser_id() {
@@ -170,5 +173,14 @@ public class StudentDetailsDto {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+
+	public Integer getBatch() {
+		return batch;
+	}
+
+	public void setBatch(Integer batch) {
+		this.batch = batch;
+	}
+	
 	
 }

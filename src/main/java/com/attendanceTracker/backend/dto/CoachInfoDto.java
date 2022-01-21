@@ -32,29 +32,16 @@ public class CoachInfoDto {
 	private long emergency_contact_number;
 	
 	private long coach_id;
+	private String status;
+ 	
 	
-	
 
-	private String profile_job;
-	
-	public long getCoach_id() {
-		return coach_id;
-	}
-
-	public void setCoach_id(long coach_id) {
-		this.coach_id = coach_id;
-	}
-
-	public CoachInfoDto() {
-		
-		// TODO Auto-generated constructor stub
-	}
-
-	public CoachInfoDto(String username, String useremail, String role, int age, String gender,
+	public CoachInfoDto(long id, String username, String useremail, String role, int age, String gender,
 			String communication_address, String home_address, String access_id, long aadhar_number, long phone_number,
 			String blood_group, String personal_email, String emergency_contact_name, long emergency_contact_number,
-			long coach_id, String profile_job) {
+			long coach_id, String status, String profile_job) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.useremail = useremail;
 		this.role = role;
@@ -70,9 +57,32 @@ public class CoachInfoDto {
 		this.emergency_contact_name = emergency_contact_name;
 		this.emergency_contact_number = emergency_contact_number;
 		this.coach_id = coach_id;
+		this.status = status;
 		this.profile_job = profile_job;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	private String profile_job;
+	
+	public long getCoach_id() {
+		return coach_id;
+	}
+
+	public void setCoach_id(long coach_id) {
+		this.coach_id = coach_id;
+	}
+
+	public CoachInfoDto() {
+		
+		// TODO Auto-generated constructor stub
+	}
 
 	public long getId() {
 		return id;
