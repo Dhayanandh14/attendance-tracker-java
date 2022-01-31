@@ -18,6 +18,15 @@ public class ReportDto {
 
 	private Boolean attendance_status;
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	private String status;
 	public ReportDto() {
 		super();
 		// TODO Auto-generated constructor stub

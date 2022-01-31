@@ -1,8 +1,11 @@
 package com.attendanceTracker.backend.controller;
 
 import java.sql.Date;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
+import org.json.JSONObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -29,8 +32,9 @@ import com.attendanceTracker.backend.service.ReportService;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import net.bytebuddy.asm.Advice.Return;
+import netscape.javascript.JSObject;
 
-@CrossOrigin(origins = "https://react-http-478ce.web.app/") 
+@CrossOrigin(origins = "http://localhost:3000") 
 @RestController
 @RequestMapping("/api/v1/")
 //@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
@@ -67,14 +71,26 @@ public class AttendanceController {
 		return ResponseEntity.ok(attendance);
 	}  
 	@GetMapping("/report-date-range/{date1}/{date2}")
-	public List<ReportDto> getDateByRange(@PathVariable("date1") String date1, @PathVariable ("date2")String date2, User User){
-//		System.out.println(attendanceRepository.findAllByAttendanceDate(date1,date2));
-//		return attendanceRepository.findAllByAttendanceDate(date1,date2); 
-		reportService.setDate1=date1;
-		reportService.setDate2=date2;
-		List<ReportDto> reportDtos =  reportService.convertEntityToDto(date1,date2);
-		return reportDtos;
-	}
+	   public Hashtable<String, Hashtable<Date, Boolean>> getDateByRange(@PathVariable("date1") String date1, @PathVariable ("date2")String date2, User User) {
+	      reportService.setDate1=date1;
+	      reportService.setDate2=date2;
+	      List<ReportDto> reportDtos =  reportService.convertEntityToDto(date1,date2);
+	      Hashtable<String, Hashtable<Date, Boolean>> hashtable = new Hashtable<>();
+	      for (ReportDto reportDto : reportDtos) {
+	         String username = reportDto.getUsername();
+	         if (!hashtable.contains(username)) {
+	            hashtable.put(username, new Hashtable<>());
+	         }
+	      }
+	      for (ReportDto reportDto : reportDtos) {
+	         String username = reportDto.getUsername();
+	         Date date = (Date) reportDto.getAttendance_date();
+	         Boolean status = reportDto.getAttendance_status();
+	         hashtable.get(username).put(date, status);
+	      }
+	      System.out.print(hashtable);
+	      return hashtable; 
+	   }
 	
 	@GetMapping("/report-by-name/{id}")
 	public List<AttendanceDto> getDateByRange(@PathVariable ("id")Long id ){
@@ -82,6 +98,8 @@ public class AttendanceController {
 			return attendanceDtos;
 		
 	}
+	
+
 	
 	
 }

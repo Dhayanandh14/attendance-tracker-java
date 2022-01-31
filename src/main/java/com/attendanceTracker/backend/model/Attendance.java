@@ -28,6 +28,10 @@ public class Attendance {
 	
 	
 	public Attendance() {
+		id=0;
+		userId=0;
+		attendance_date=null;
+		attendance_status=false;
 		
 		// TODO Auto-generated constructor stub
 	}

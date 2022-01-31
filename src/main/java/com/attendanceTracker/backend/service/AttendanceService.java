@@ -20,8 +20,10 @@ import com.attendanceTracker.backend.dto.AttendanceDto;
 import com.attendanceTracker.backend.dto.ReportDto;
 import com.attendanceTracker.backend.dto.StudentDetailsDto;
 import com.attendanceTracker.backend.model.Attendance;
+import com.attendanceTracker.backend.model.Student;
 import com.attendanceTracker.backend.model.User;
 import com.attendanceTracker.backend.repository.AttendanceRepository;
+import com.attendanceTracker.backend.repository.StudentRepository;
 import com.attendanceTracker.backend.repository.UserRepository;
 
 @Service
@@ -36,6 +38,8 @@ public class AttendanceService {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	@Autowired
+	private StudentRepository studentRepository;
 	public String setDate = "";
 
 	public void setAttendanceDate(String date) {
@@ -48,14 +52,17 @@ public class AttendanceService {
 
 	private AttendanceDto convertEntityToDto(User user) {
 		AttendanceDto attendanceDto = new AttendanceDto();
+		
 		attendanceDto = modelMapper.map(user, AttendanceDto.class);
 		Attendance attendance = attendanceRepository.findByUserIdAndDate(user.getUser_id(), setDate);
+		Student student = studentRepository.findByUserId(user.getUser_id());
 		if (attendance == null) {
 			attendanceRepository.insert(user.getUser_id(), setDate);
 			attendance = attendanceRepository.findByUserIdAndDate(user.getUser_id(), setDate);
 		}
 		attendanceDto.setUserId(attendance.getUserId());
 		attendanceDto.setId(attendance.getId());
+		attendanceDto.setStatus(student.getStatus());
 		attendanceDto.setAttendance_status(attendance.getAttendance_status());
 		attendanceDto.setAttendance_date(attendance.getAttendance_date());
 		return attendanceDto;
@@ -65,13 +72,18 @@ public class AttendanceService {
 		return userRepository.findByRole("student").stream().map(this::convertEntityToDto).collect(Collectors.toList());
 	}
 
+	
+	
 	// report page get report by id
 
 	public List<AttendanceDto> convertEntityToDto2(long id) {
 
 		List<Attendance> attendance = attendanceRepository.findByUserId(id);
 		List<AttendanceDto> listOfAttendanceDto = new ArrayList<AttendanceDto>();
+		
 		User user = userRepository.findById(id);
+		Student student = studentRepository.findByUserId(user.getUser_id());
+		System.out.println(student);
 		for (Attendance a : attendance) {
 			AttendanceDto attendanceDto = new AttendanceDto();
 			attendanceDto.setUser_name(user.getUser_name());
@@ -80,6 +92,7 @@ public class AttendanceService {
 			attendanceDto.setId(a.getId());
 			attendanceDto.setAttendance_date(a.getAttendance_date());
 			attendanceDto.setAttendance_status(a.getAttendance_status());
+			attendanceDto.setStatus(student.getStatus());
 			listOfAttendanceDto.add(attendanceDto);
 		}
 		return listOfAttendanceDto;

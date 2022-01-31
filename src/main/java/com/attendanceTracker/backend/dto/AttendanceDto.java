@@ -15,13 +15,19 @@ public class AttendanceDto {
 	
 	private String user_email;
 	private String user_name;
+	private String status;
 	
 	
 	
 	
 	
 	
-	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public long getId() {
 		return id;
 	}
