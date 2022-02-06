@@ -9,6 +9,9 @@ import org.json.JSONObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.attendanceTracker.backend.dto.AttendanceDto;
@@ -64,14 +68,16 @@ public class AttendanceController {
 		System.out.println(attendance);
 		return attendanceRepository.saveAll(attendance);
 	}
+	
 	@PatchMapping("/attendance/")
 	public ResponseEntity<List<Attendance>> updateAttendace(@RequestBody List<Attendance> updateAttendance){
 		System.out.println(updateAttendance);
 		List<Attendance> attendance = attendanceRepository.saveAll(updateAttendance);
 		return ResponseEntity.ok(attendance);
 	}  
+	
 	@GetMapping("/report-date-range/{date1}/{date2}")
-	   public Hashtable<String, Hashtable<Date, Boolean>> getDateByRange(@PathVariable("date1") String date1, @PathVariable ("date2")String date2, User User) {
+	   public Hashtable<String, Hashtable<Date, Boolean>> getDateByRange(@PathVariable("date1") String date1, @PathVariable ("date2")String date2, User User ) {
 	      reportService.setDate1=date1;
 	      reportService.setDate2=date2;
 	      List<ReportDto> reportDtos =  reportService.convertEntityToDto(date1,date2);
@@ -89,6 +95,7 @@ public class AttendanceController {
 	         hashtable.get(username).put(date, status);
 	      }
 	      System.out.print(hashtable);
+	      
 	      return hashtable; 
 	   }
 	
@@ -98,9 +105,5 @@ public class AttendanceController {
 			return attendanceDtos;
 		
 	}
-	
-
-	
-	
 }
 

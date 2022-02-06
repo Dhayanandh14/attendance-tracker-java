@@ -11,8 +11,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.attendanceTracker.backend.model.Attendance;
-import com.attendanceTracker.backend.model.User;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators.StringIdGenerator;
 
 public interface AttendanceRepository extends JpaRepository<Attendance,Long> {
 	
@@ -36,19 +34,36 @@ public interface AttendanceRepository extends JpaRepository<Attendance,Long> {
 	List<Attendance> findAllByAttendanceDate(String date1, String date2);
 	
 	
-	// Report By count and date Range
-	@Query(value ="select * from attendance where user_id= :id and attendance_date between :date1 and :date2 and attendance_status=true ",nativeQuery= true)
-	List<Attendance> getAttendanceStatusPresentCount(long id,String date1,String date2);
 	
-	@Query(value ="select * from attendance where user_id= :id and attendance_date between :date1 and :date2 and attendance_status=false and attendance_status is not null ",nativeQuery= true)
-	List<Attendance> getAttendanceStatusAbsentCount(long id,String date1,String date2);
-	
-	
-	// report by name and date range. It will get Particular user name atttendance status count
+	// report by name and date range.
 	@Query(value ="select * from attendance where user_id= :id and attendance_date between :date1 and :date2  order by attendance_date",nativeQuery= true)
 	List<Attendance> getReportByNameAndDateRange(long id,String date1,String date2);
 	
-	@Query(value="select user_id,count(attendance_status) from attendance where  attendance_status=1 and attendance_date between '2022-01-12' and '2022-01-20' group by user_id",nativeQuery = true)
-	List<Attendance> getAllNameAndStatusCount();
+	
+	@Query(value = "select COUNT(*) from attendance where attendance_date between :date and :date2 and attendance_status=1",nativeQuery = true)
+	Integer getAttendancePercentage(String date,String date2);
+	
+	@Query(value="select count(*) from attendance  where attendance_date between :date and :date2",nativeQuery = true)
+	Integer getTotalAttendanceCount(String date,String date2);
+	
+	
+	// full month graph view date wise percentage
+	@Query(value = "select count(attendance_date) from attendance where attendance_date between  :date and :date2 and attendance_status=1 group by attendance_date order by attendance_date",nativeQuery=true)
+	List<Integer> getEachDayAttendanceCount(String date,String date2);
+	
+	@Query(value = "select count(attendance_date) from attendance where attendance_date between  :date and :date2 and attendance_status=0 group by attendance_date",nativeQuery=true)
+	List<Integer> getEachDayAttendanceAbsentCount(String date,String date2);
+	
+	//every day attendance status count
+	@Query(value="select count(attendance_status) from attendance where attendance_date =:date and attendance_status=1",nativeQuery = true)
+	Integer getEveryDayAttendanceStatusCount(String date);
+	
+	@Query(value="select count(attendance_status) from attendance where attendance_date =:date and attendance_status=0",nativeQuery = true)
+	Integer getEveryDayAttendanceStatusAbsentCount(String date);
+
+
+	
+	
+	
 }
 

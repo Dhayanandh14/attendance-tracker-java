@@ -21,20 +21,6 @@ public class ReportsController {
 	@Autowired
 	private AttendanceRepository attendanceRepository;
 	
-	@GetMapping("/reports-by-status-count-and-date/{id}/{date1}/{date2}")
-	public int[] reportsByStatusCountAndDate(@PathVariable ("id") long id,@PathVariable("date1") String date1,@PathVariable ("date2") String date2){
-	   int[] arr = new int[2]; 
-		arr[0]=attendanceRepository.getAttendanceStatusPresentCount(1, date1,date2).size();
-		arr[1]=attendanceRepository.getAttendanceStatusAbsentCount(id, date1, date2).size();
-		return arr;
-	}	
-	
-	@GetMapping("/reports-by-All-status-and-name")
-	public List<Attendance> reportsByAllStatusName(){
-		return attendanceRepository.getAllNameAndStatusCount();
-	}
-	
-	
 	// report by name and date range
 	@GetMapping("/reports-by-name-and-date/{id}/{date1}/{date2}")
 	public List<Attendance> reportsByNameAndDate(@PathVariable ("id") long id,@PathVariable("date1") String date1,@PathVariable ("date2") String date2){
