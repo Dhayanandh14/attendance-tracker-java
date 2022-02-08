@@ -88,17 +88,22 @@ public class UsersController {
 	}
 	
 	@GetMapping("/signin/{useremail}/{userpassword}")
-	public String checkUserByEmailandPassword(@PathVariable("useremail") String useremail,@PathVariable("userpassword") String userpassword) {
+	public Object checkUserByEmailandPassword(@PathVariable("useremail") String useremail,@PathVariable("userpassword") String userpassword) {
 		User user = userRepository.findByUseremail(useremail);
 		String isExist = "";
+		String[] arr = new String[2];
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
          if(user.getUser_email().toUpperCase().equals(useremail.toUpperCase()) && encoder.matches(userpassword, user.getPassword())) {
         	 isExist = "true";
+        	 arr[0]=user.getRole();
+        	 arr[1]= isExist;
          }
          else {
         	 isExist =  "false";
+        	 arr[0]=isExist;
          }
-		return isExist;
+         System.out.print(user.getRole());
+		return arr;
 	    
 	}
 } 
