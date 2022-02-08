@@ -18,7 +18,8 @@ import com.attendanceTracker.backend.repository.UserRepository;
 import com.attendanceTracker.backend.service.StudentService;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://react-http-478ce.web.app/")
 @RestController
 @RequestMapping("/api/v1/")
 public class UsersController {

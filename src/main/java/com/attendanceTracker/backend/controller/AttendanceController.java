@@ -38,7 +38,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import net.bytebuddy.asm.Advice.Return;
 import netscape.javascript.JSObject;
 
-@CrossOrigin(origins = "http://localhost:3000") 
+//@CrossOrigin(origins = "http://localhost:3000") 
+@CrossOrigin(origins = "https://react-http-478ce.web.app/") 
 @RestController
 @RequestMapping("/api/v1/")
 //@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")

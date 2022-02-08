@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.attendanceTracker.backend.model.Attendance;
 import com.attendanceTracker.backend.repository.AttendanceRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://react-http-478ce.web.app/")
 @RestController
 @RequestMapping("/api/v1/")
 public class ReportsController {
