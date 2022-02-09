@@ -22,7 +22,7 @@ import com.attendanceTracker.backend.service.CoachService;
 import java.util.*;
 
 //@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://react-http-478ce.web.app/")
+@CrossOrigin(origins = "https://react-http-478ce.web.app")
 @RestController
 @RequestMapping("/api/v1/")
 public class CoachController {

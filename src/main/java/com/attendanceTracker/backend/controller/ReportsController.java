@@ -25,7 +25,7 @@ public class ReportsController {
 	// report by name and date range
 	@GetMapping("/reports-by-name-and-date/{id}/{date1}/{date2}")
 	public List<Attendance> reportsByNameAndDate(@PathVariable ("id") long id,@PathVariable("date1") String date1,@PathVariable ("date2") String date2){
-		return attendanceRepository.getReportByNameAndDateRange(1, date1,date2);	
+		return attendanceRepository.getReportByNameAndDateRange(id, date1,date2);	
 				
 	}	
 	
