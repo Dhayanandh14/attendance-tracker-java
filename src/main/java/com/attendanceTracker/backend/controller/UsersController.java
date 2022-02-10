@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -107,4 +108,30 @@ public class UsersController {
 		return arr;
 	    
 	}
+	
+	@GetMapping("/users_id/{id}")
+	public User getUserById(@PathVariable ("id") long id){
+		return userRepository.findById(id);
+	}
+	
+	@PatchMapping("/update_user/{id}")
+	public User updateUserProfile(@PathVariable ("id") long id, @RequestBody User user) {
+		User user1 = userRepository.findById(id);
+		user1.setUser_name(user.getUser_name());
+		user1.setUser_email(user.getUser_email());
+		user1.setAge(user.getAge());
+		user1.setAccess_id(user.getAccess_id());
+		user1.setBlood_group(user.getBlood_group());
+		user1.setAadhar_number(user.getAadhar_number());
+		user1.setGender(user.getGender());
+		user1.setPhone_number(user.getPhone_number());
+		user1.setPersonal_email(user.getPersonal_email());
+		user1.setHome_address(user.getHome_address());
+		user1.setCommunication_address(user.getCommunication_address());
+		user1.setEmergency_contact_name(user.getEmergency_contact_name());
+		user1.setEmergency_contact_number(user.getEmergency_contact_number());
+		return userRepository.save(user1);
+	
+	}
+	
 } 
