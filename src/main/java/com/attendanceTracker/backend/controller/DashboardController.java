@@ -15,7 +15,7 @@ import com.attendanceTracker.backend.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 //@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://react-http-478ce.web.app")
+@CrossOrigin(origins = "https://attendance-tracker-b013d.web.app")
 @RestController
 @RequestMapping("/api/v1/")
 public class DashboardController {

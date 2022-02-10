@@ -39,7 +39,7 @@ import net.bytebuddy.asm.Advice.Return;
 import netscape.javascript.JSObject;
 
 //@CrossOrigin(origins = "http://localhost:3000") 
-@CrossOrigin(origins = "https://react-http-478ce.web.app") 
+@CrossOrigin(origins = "https://attendance-tracker-b013d.web.app")
 @RestController
 @RequestMapping("/api/v1/")
 //@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
