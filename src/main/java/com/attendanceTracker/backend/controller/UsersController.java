@@ -20,7 +20,7 @@ import com.attendanceTracker.backend.service.StudentService;
 
 
 //@CrossOrigin(origins = "http://localhost:3000")
-//@CrossOrigin(origins = "https://attendance-tracker-b013d.web.app")
+@CrossOrigin(origins = "https://attendance-tracker-b013d.web.app")
 @RestController
 @RequestMapping("/api/v1/")
 public class UsersController {
