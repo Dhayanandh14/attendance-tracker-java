@@ -20,7 +20,7 @@ import com.attendanceTracker.backend.service.StudentService;
 
 
 //@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://attendance-tracker-b013d.web.app")
+//@CrossOrigin(origins = "https://attendance-tracker-b013d.web.app")
 @RestController
 @RequestMapping("/api/v1/")
 public class UsersController {
@@ -61,17 +61,18 @@ public class UsersController {
 	
 	@PostMapping("/users/{check}")
 	public Object createUser(@RequestBody User user,@PathVariable("check") String check) {
-		System.out.println(check);
+//		System.out.println(check);
+		String[] arr = new String[2];
 		passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPasswordString  = this.passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPasswordString);
 		if(check.equals("yes")) return userRepository.save(user);
 		else {
-			userRepository.save(user);
-			return "Success";
+		 User user1 = 	userRepository.save(user);
+			arr[0] = "success";
+			arr[1]= String.valueOf(user1.getUser_id());
+			return arr;
 		}
-//		 return "success";
-//		return encodedPasswordString;
 	}
 	
 	@GetMapping("/users/{useremail}")
