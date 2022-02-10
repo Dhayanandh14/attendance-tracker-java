@@ -19,8 +19,8 @@ import com.attendanceTracker.backend.repository.UserRepository;
 import com.attendanceTracker.backend.service.StudentService;
 
 
-//@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://attendance-tracker-b013d.web.app")
+@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "https://attendance-tracker-b013d.web.app")
 @RestController
 @RequestMapping("/api/v1/")
 public class UsersController {
@@ -93,12 +93,14 @@ public class UsersController {
 	public Object checkUserByEmailandPassword(@PathVariable("useremail") String useremail,@PathVariable("userpassword") String userpassword) {
 		User user = userRepository.findByUseremail(useremail);
 		String isExist = "";
-		String[] arr = new String[2];
+		String[] arr = new String[3];
+		System.out.println("userid"+user.getUser_id());
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
          if(user.getUser_email().toUpperCase().equals(useremail.toUpperCase()) && encoder.matches(userpassword, user.getPassword())) {
         	 isExist = "true";
         	 arr[0]=user.getRole();
         	 arr[1]= isExist;
+			 arr[2]= String.valueOf(user.getUser_id());
          }
          else {
         	 isExist =  "false";
@@ -106,11 +108,11 @@ public class UsersController {
          }
          System.out.print(user.getRole());
 		return arr;
-	    
 	}
 	
 	@GetMapping("/users_id/{id}")
 	public User getUserById(@PathVariable ("id") long id){
+		System.out.print(userRepository.findById(id));
 		return userRepository.findById(id);
 	}
 	
@@ -131,6 +133,7 @@ public class UsersController {
 		user1.setEmergency_contact_name(user.getEmergency_contact_name());
 		user1.setEmergency_contact_number(user.getEmergency_contact_number());
 		return userRepository.save(user1);
+		
 	
 	}
 	
